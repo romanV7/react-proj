@@ -1,6 +1,8 @@
 const ATTR = {
     ADD_POST: 'ADD_POST',
-    UPDATE_NEW_POST_TEXT: 'UPDATE_NEW_POST_TEXT'
+    UPDATE_NEW_POST_TEXT: 'UPDATE_NEW_POST_TEXT',
+    UPDATE_NEW_MESSAGE_BODY: 'UPDATE_NEW_MESSAGE_BODY',
+    SEND_MESSAGE: 'SEND_MESSAGE'
 }
 
 
@@ -27,7 +29,9 @@ const store = {
                 {id: 2, name: 'David'},
                 {id: 3, name: 'Varela'}
             ],
-        }
+            newMessageBody: ''
+        },
+        sidebar: {}
     },
     _callSubscriber() {},
     _addPost () {
@@ -44,6 +48,16 @@ const store = {
         this._state.profilePage.newPostText = newText
         this._callSubscriber(this._state)
     },
+    _updateNewMessageBody(body) {
+        this._state.dialogsPage.newMessageBody = body
+        this._callSubscriber(this._state)
+    },
+    _sendMessage() {
+        const body = this._state.dialogsPage.newMessageBody
+        this._state.dialogsPage.newMessageBody = ''
+        this._state.dialogsPage.messages.push({id: 6, message: body})
+        this._callSubscriber(this._state)
+    },
     getState() {
         return this._state
     },
@@ -56,6 +70,10 @@ const store = {
                 return this._addPost()
             case ATTR.UPDATE_NEW_POST_TEXT:
                 return this._updateNewPostText(action.newText)
+            case ATTR.UPDATE_NEW_MESSAGE_BODY:
+                return this._updateNewMessageBody(action.body)
+            case ATTR.SEND_MESSAGE:
+                return this._sendMessage()
             default:
                 return false
         }
@@ -67,6 +85,11 @@ const store = {
 export const addPostActionCreator = () => ({type: ATTR.ADD_POST})
 export const updateNewPostTextActionCreator = (text) => ({
     type: ATTR.UPDATE_NEW_POST_TEXT, newText: text    
+})
+
+export const sendMessageCreator = () => ({type: ATTR.SEND_MESSAGE})
+export const updateNewMessageBodyCreator = (body) => ({
+    type: ATTR.UPDATE_NEW_MESSAGE_BODY, body 
 })
 
 export default store
