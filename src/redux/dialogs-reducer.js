@@ -27,4 +27,9 @@ const dialogsReducer = (state, action) => {
 
 }
 
+export const sendMessageCreator = () => ({type: ATTR.SEND_MESSAGE})
+export const updateNewMessageBodyCreator = (body) => ({
+    type: ATTR.UPDATE_NEW_MESSAGE_BODY, body 
+})
+
 export default dialogsReducer

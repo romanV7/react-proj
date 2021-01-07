@@ -1,13 +1,6 @@
 import dialogsReducer from './dialogs-reducer'
 import profileReducer from './profile-reducer'
-// import sidebarReducer from './sidebar-reducer'
-
-const ATTR = {
-    ADD_POST: 'ADD_POST',
-    UPDATE_NEW_POST_TEXT: 'UPDATE_NEW_POST_TEXT',
-    UPDATE_NEW_MESSAGE_BODY: 'UPDATE_NEW_MESSAGE_BODY',
-    SEND_MESSAGE: 'SEND_MESSAGE'
-}
+import sidebarReducer from './sidebar-reducer'
 
 const store = {
     _state: {
@@ -46,22 +39,12 @@ const store = {
     dispatch(action) {
         this._state.profilePage = profileReducer(this._state.profilePage, action)
         this._state.dialogsPage = dialogsReducer(this._state.dialogsPage, action)
-        // this._state.sidebar = sidebarReducer(this._state.sidebar, action)
+        this._state.sidebar = sidebarReducer(this._state.sidebar, action)
         this._callSubscriber(this._state)
     },
 
     
 }
-
-export const addPostActionCreator = () => ({type: ATTR.ADD_POST})
-export const updateNewPostTextActionCreator = (text) => ({
-    type: ATTR.UPDATE_NEW_POST_TEXT, newText: text    
-})
-
-export const sendMessageCreator = () => ({type: ATTR.SEND_MESSAGE})
-export const updateNewMessageBodyCreator = (body) => ({
-    type: ATTR.UPDATE_NEW_MESSAGE_BODY, body 
-})
 
 export default store
 window.store = store
