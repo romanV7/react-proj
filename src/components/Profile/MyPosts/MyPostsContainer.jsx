@@ -4,8 +4,8 @@ import {addPostActionCreator, updateNewPostTextActionCreator} from '../../../red
 import MyPosts from './MyPosts';
 
 const mapStateToProps = state => ({
-    posts: state.posts,
-    newPostText: state.newPostText
+    posts: state.profilePage.posts,
+    newPostText: state.profilePage.newPostText
 })
 
 const mapDispatchToProps = dispatch => ({
