@@ -5,6 +5,9 @@ class Users extends React.Component {
     constructor(props) {
         super(props)
 
+    }
+
+    componentDidMount() {
         axios
             .get('https://network.example.com/users')
             .then(({data}) => this.props.setUsers(data.items))
