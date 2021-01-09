@@ -4,19 +4,15 @@ import React from 'react'
 class Users extends React.Component {
     constructor(props) {
         super(props)
+
+        axios
+            .get('https://network.example.com/users')
+            .then(({data}) => this.props.setUsers(data.items))
     }
 
-    getUsers = () => {
-        if (!this.props.users.length) {
-            axios
-                .get('https://network.example.com/users')
-                .then(({data}) => this.props.setUsers(data.items))
-        }
-    }
     render = () => {
         return (
             <div>
-                <button onClick={this.getUsers}></button>
                 {
                     this.props.users.map(u => 
                     <div key={u.id}>
