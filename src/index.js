@@ -4,7 +4,7 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import './index.css';
 import store from './redux/redux-store'
-import {Provider} from './storeContext'
+import {Provider} from 'react-redux'
 
 const rerenderEntireTree = (state) => {
     render(
