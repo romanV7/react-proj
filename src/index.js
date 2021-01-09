@@ -6,18 +6,13 @@ import './index.css';
 import store from './redux/redux-store'
 import {Provider} from 'react-redux'
 
-const rerenderEntireTree = (state) => {
-    render(
-        <React.StrictMode>
-            <Provider store={store}>
-                <App />
-            </Provider>
-        </React.StrictMode>,
-        document.getElementById('root')
-    );
-}
-
-rerenderEntireTree(store.getState())
-store.subscribe(() => rerenderEntireTree(store.getState()))
+render(
+    <React.StrictMode>
+        <Provider store={store}>
+            <App />
+        </Provider>
+    </React.StrictMode>,
+    document.getElementById('root')
+);
 
 reportWebVitals();

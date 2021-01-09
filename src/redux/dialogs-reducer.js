@@ -19,24 +19,20 @@ const initialState = {
     newMessageBody: ''
 }
 
-const updateNewMessageBody = (state, body) => {
-    state.newMessageBody = body
-    return state
-}
-
-const sendMessage = (state) => {
-    const body = state.newMessageBody
-    state.newMessageBody = ''
-    state.messages.push({id: 6, message: body})
-    return state
-}
-
-const dialogsReducer = (state = initialState, action) => {
+const dialogsReducer = (state = initialState, action) => {    
     switch(action.type) {
         case ATTR.UPDATE_NEW_MESSAGE_BODY:
-            updateNewMessageBody(state, action.body)
+            return {
+                ...state,
+                newMessageBody: body
+            }        
         case ATTR.SEND_MESSAGE:
-            sendMessage(state)
+            const body = state.newMessageBody
+            return {
+                ...state,
+                newMessageBody: '',
+                messages: [...state.messages, {id: 6, message: body}],
+            }
         default:
             return state
     }

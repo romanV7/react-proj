@@ -11,28 +11,24 @@ const initialState = {
     newPostText: 'newPostText'
 }
 
-const addPost = (state) => {
-    const newPost = {
-        id: 5,
-        message: state.newPostText,
-        likesCount: 2
-    }
-    state.posts.push(newPost)
-    state.newPostText = ''
-    return state
-}
-
-const updateNewPostText = (state, newText) => {
-    state.newPostText = newText
-    return state
-}
-
 const profileReducer = (state = initialState, action) => {
     switch(action.type) {
         case ATTR.ADD_POST:
-            addPost(state)
+            const newPost = {
+                id: 5,
+                message: state.newPostText,
+                likesCount: 2
+            }
+            return {
+                ...state,
+                newPostText: '',
+                posts: [...state.posts, newPost]
+            }
         case ATTR.UPDATE_NEW_POST_TEXT:
-            updateNewPostText(state, action.newText)
+            return {
+                ...state,
+                newPostText: action.newText
+            }
         default:
             return state
     }
