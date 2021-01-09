@@ -3,6 +3,14 @@ const ATTR = {
     UPDATE_NEW_POST_TEXT: 'UPDATE_NEW_POST_TEXT',
 }
 
+const initialState = {
+    posts: [
+        {id: 1, message: 'Hi!', likesCount: 23},
+        {id: 2, message: 'It"s me', likesCount: 33}
+    ],
+    newPostText: 'newPostText'
+}
+
 const addPost = (state) => {
     const newPost = {
         id: 5,
@@ -19,7 +27,7 @@ const updateNewPostText = (state, newText) => {
     return state
 }
 
-const profileReducer = (state, action) => {
+const profileReducer = (state = initialState, action) => {
     switch(action.type) {
         case ATTR.ADD_POST:
             addPost(state)
