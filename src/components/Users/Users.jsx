@@ -24,8 +24,29 @@ const Users = props => {
                         <div>
                             {
                                 u.followed 
-                                    ? <button onClick={() => props.follow(u.id)}>Unfollow</button> 
-                                    : <button onClick={() => props.unfollow(u.id)}>Follow</button>
+                                    ? <button onClick={() => {
+                                        axios.delete('https://example.com/follow' + u.id, {
+                                            withCredentials: true,
+                                            headers: {
+                                                'API-KEY': ''
+                                            }
+                                        })
+                                            .then(response => {
+                                                if (response.data.resultCode === 0) {
+                                                    props.follow(u.id)
+                                                }
+                                            })
+                                    }}>Unfollow</button> 
+                                    : <button onClick={() => {
+                                        axios.post('https://example.com/unfollow' + u.id, {}, {
+                                            withCredentials: true
+                                        })
+                                            .then(response => {
+                                                if (response.data.resultCode === 0) {
+                                                    props.unfollow(u.id)
+                                                }
+                                            })
+                                    }}>Follow</button>
                             }
                         </div>
                     </span>
