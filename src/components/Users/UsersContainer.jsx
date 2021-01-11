@@ -19,7 +19,9 @@ class UsersContainer extends React.Component {
     componentDidMount() {
         this.props.toggleIsFetching(true)
         axios
-            .get(`https://network.example.com/users?page=${this.props.pagesCount}`)
+            .get(`https://network.example.com/users?page=${this.props.pagesCount}`, {
+                withCredentials: true
+            })
             .then(({data}) => {
                 this.props.toggleIsFetching(false)
                 this.props.setUsers(data.items)
