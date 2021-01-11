@@ -5,6 +5,7 @@ import Profile from './Profile';
 import * as axios from 'axios'
 import { connect } from 'react-redux';
 import {setUserProfile} from '../../redux/profile-reducer'
+import { withRouter } from 'react-router-dom';
 
 class ProfileContainer extends React.Component {
     constructor(props) {
@@ -12,7 +13,7 @@ class ProfileContainer extends React.Component {
     }
 
     componentDidMount() {
-        axios.get('https://network.example.com')
+        axios.get(`https://network.example.com/api/profile/${this.props.match.params.userId}`)
             .then(response => this.props.setUserProfile(response.data))
     }
 
@@ -25,4 +26,4 @@ const mapStateToProps = state => ({
     profile: state.profilePage.profile
 })
 
-export default connect(mapStateToProps, {setUserProfile})(ProfileContainer);
+export default connect(mapStateToProps, {setUserProfile})(withRouter(ProfileContainer));
