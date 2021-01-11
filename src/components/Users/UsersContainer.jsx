@@ -10,6 +10,7 @@ import {
 } from '../../redux/users-reducer'
 import Preloader from '../common/Preloader/Preloader'
 import Users from './Users'
+import {getUsers} from '../../api/api'
 
 class UsersContainer extends React.Component {
     constructor(props) {
@@ -18,15 +19,11 @@ class UsersContainer extends React.Component {
 
     componentDidMount() {
         this.props.toggleIsFetching(true)
-        axios
-            .get(`https://network.example.com/users?page=${this.props.pagesCount}`, {
-                withCredentials: true
-            })
-            .then(({data}) => {
-                this.props.toggleIsFetching(false)
-                this.props.setUsers(data.items)
-                this.props.setTotalUsersCount(data.totalUsersCount)
-            })
+        getUsers.then(({data}) => {
+            this.props.toggleIsFetching(false)
+            this.props.setUsers(data.items)
+            this.props.setTotalUsersCount(data.totalUsersCount)
+        })
     }
 
     onPageChanged = (pageNumber) => {
