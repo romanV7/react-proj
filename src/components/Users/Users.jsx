@@ -39,7 +39,10 @@ const Users = props => {
                                     }}>Unfollow</button> 
                                     : <button onClick={() => {
                                         axios.post('https://example.com/unfollow' + u.id, {}, {
-                                            withCredentials: true
+                                            withCredentials: true,
+                                            headers: {
+                                                'API-KEY': ''
+                                            }
                                         })
                                             .then(response => {
                                                 if (response.data.resultCode === 0) {
