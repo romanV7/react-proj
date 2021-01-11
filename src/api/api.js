@@ -1,6 +1,7 @@
 import * as axios from 'axios'
 
 const instance = axios.create({
+    baseURL: 'https://network.example.com/',
     withCredentials: true,
     headers: {
         'API-KEY': ''
@@ -8,7 +9,7 @@ const instance = axios.create({
 })
 
 export const getUsers = (pagesCount) => {
-    return instance.get(`https://network.example.com/users?page=${pagesCount}`)
+    return instance.get(baseURL + 'users?page=' + pagesCount)
         .then(response => response.data)
 }
 
