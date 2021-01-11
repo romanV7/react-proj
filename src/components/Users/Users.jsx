@@ -25,6 +25,7 @@ const Users = props => {
                             {
                                 u.followed 
                                     ? <button onClick={() => {
+                                        props.toggleFollowingProgress(true)
                                         axios.delete('https://example.com/follow' + u.id, {
                                             withCredentials: true,
                                             headers: {
@@ -35,9 +36,11 @@ const Users = props => {
                                                 if (response.data.resultCode === 0) {
                                                     props.follow(u.id)
                                                 }
+                                                props.toggleFollowingProgress(false)
                                             })
                                     }}>Unfollow</button> 
                                     : <button onClick={() => {
+                                        props.toggleFollowingProgress(true)
                                         axios.post('https://example.com/unfollow' + u.id, {}, {
                                             withCredentials: true,
                                             headers: {
@@ -48,6 +51,7 @@ const Users = props => {
                                                 if (response.data.resultCode === 0) {
                                                     props.unfollow(u.id)
                                                 }
+                                                props.toggleFollowingProgress(false)
                                             })
                                     }}>Follow</button>
                             }
