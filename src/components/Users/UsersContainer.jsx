@@ -19,7 +19,7 @@ class UsersContainer extends React.Component {
 
     componentDidMount() {
         this.props.toggleIsFetching(true)
-        getUsers.then(({data}) => {
+        getUsers(this.props.pagesCount).then(({data}) => {
             this.props.toggleIsFetching(false)
             this.props.setUsers(data.items)
             this.props.setTotalUsersCount(data.totalUsersCount)
