@@ -52,7 +52,7 @@ const mapStateToProps = state => {
         pageSize: state.usersPage.pageSize,
         totalUsersCount: state.usersPage.totalUsersCount,
         isFetching: state.usersPage.isFetching,
-        toggleFollowingProgress: state.usersPage.toggleFollowingProgress
+        followingInProgress: state.usersPage.followingInProgress
     }
 }
 
