@@ -10,7 +10,7 @@ import {
 } from '../../redux/users-reducer'
 import Preloader from '../common/Preloader/Preloader'
 import Users from './Users'
-import {getUsers} from '../../api/api'
+import {usersAPI} from '../../api/api'
 
 class UsersContainer extends React.Component {
     constructor(props) {
@@ -19,7 +19,7 @@ class UsersContainer extends React.Component {
 
     componentDidMount() {
         this.props.toggleIsFetching(true)
-        getUsers(this.props.pagesCount).then((response) => {
+        usersAPI.getUsers(this.props.pagesCount).then((response) => {
             this.props.toggleIsFetching(false)
             this.props.setUsers(response.items)
             this.props.setTotalUsersCount(response.totalUsersCount)

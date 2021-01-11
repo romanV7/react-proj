@@ -8,8 +8,10 @@ const instance = axios.create({
     }
 })
 
-export const getUsers = (pagesCount) => {
-    return instance.get(baseURL + 'users?page=' + pagesCount)
-        .then(response => response.data)
+export const usersAPI = {
+    getUsers(pagesCount) {
+        return instance.get(baseURL + 'users?page=' + pagesCount)
+            .then(response => response.data)
+    }
 }
 
