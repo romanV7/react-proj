@@ -24,12 +24,10 @@ const Users = props => {
                         <div>
                             {
                                 u.followed 
-                                    ? <button disabled={props.followingInProgress.some(userId => userId === u.id)} onClick={() => {
-                                        props.follow(u.id)
-                                    }}>Unfollow</button> 
-                                    : <button disabled={props.followingInProgress.some(userId => userId === u.id)} onClick={() => {
-                                        props.unfollow(u.id)
-                                    }}>Follow</button>
+                                    ? <button disabled={props.followingInProgress.some(userId => userId === u.id)} 
+                                        onClick={() => {props.follow(u.id)}}>Unfollow</button> 
+                                    : <button disabled={props.followingInProgress.some(userId => userId === u.id)} 
+                                        onClick={() => {props.unfollow(u.id)}}>Follow</button>
                             }
                         </div>
                     </span>
