@@ -1,5 +1,5 @@
-import * as axios from 'axios'
 import React from 'react'
+import {usersAPI} from '../../api/api'
 
 const Users = props => {
 
@@ -26,12 +26,7 @@ const Users = props => {
                                 u.followed 
                                     ? <button disabled={props.followingInProgress.some(userId => userId === u.id)} onClick={() => {
                                         props.toggleFollowingProgress(true, u.id)
-                                        axios.delete('https://example.com/follow' + u.id, {
-                                            withCredentials: true,
-                                            headers: {
-                                                'API-KEY': ''
-                                            }
-                                        })
+                                        usersAPI.follow(u.id)
                                             .then(response => {
                                                 if (response.data.resultCode === 0) {
                                                     props.follow(u.id)
@@ -41,12 +36,7 @@ const Users = props => {
                                     }}>Unfollow</button> 
                                     : <button disabled={props.followingInProgress.some(userId => userId === u.id)} onClick={() => {
                                         props.toggleFollowingProgress(true, u.id)
-                                        axios.post('https://example.com/unfollow' + u.id, {}, {
-                                            withCredentials: true,
-                                            headers: {
-                                                'API-KEY': ''
-                                            }
-                                        })
+                                        usersAPI.unfollow(u.id)
                                             .then(response => {
                                                 if (response.data.resultCode === 0) {
                                                     props.unfollow(u.id)
