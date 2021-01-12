@@ -1,5 +1,4 @@
 import React from 'react'
-import {usersAPI} from '../../api/api'
 
 const Users = props => {
 

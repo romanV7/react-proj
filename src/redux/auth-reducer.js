@@ -26,4 +26,14 @@ export const setUserData = (userId, email, login) => ({
     type: ATTR.SET_USER_DATA, data: {userId, email, login}
 })
 
+export const authMe = () => dispatch => {
+    usersAPI.authMe()
+    .then(response => {
+        if (response.data.resultCode === 0) {
+            const {id, email, login} = response.data.data
+            dispatch(setUserData({id, email, login}))
+        }
+    })
+}
+
 export default authReducer
