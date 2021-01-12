@@ -3,7 +3,8 @@ import { connect } from 'react-redux'
 import {sendMessageCreator, updateNewMessageBodyCreator} from '../../redux/dialogs-reducer'
 
 const mapStateToProps = state => ({
-    dialogsPage: state.dialogsPage
+    dialogsPage: state.dialogsPage,
+    isAuth: state.auth.isAuth,
 })
 
 const mapDispatchToProps = dispatch => ({
