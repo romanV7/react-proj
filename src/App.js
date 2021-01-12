@@ -21,6 +21,8 @@ const App = (props) => {
                         render={() => <ProfileContainer />} />
                     <Route path="/users"
                         render={() => <UsersContainer />} />
+                    <Route path="/login"
+                        render={() => <UsersContainer />} />
                 </div>
             </div>
         </BrowserRouter>
