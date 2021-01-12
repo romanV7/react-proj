@@ -18,6 +18,9 @@ export const usersAPI = {
     },
     unfollow(userId) {
         return instance.post(baseURL + 'unfollow' + userId)
+    },
+    getProfile() {
+        return instance.get(baseURL + 'profile/' + userId)
     }
 }
 
