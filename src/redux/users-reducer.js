@@ -1,3 +1,5 @@
+import {usersAPI} from '../../api/api'
+
 const ATTR = {
     FOLLOW: 'FOLLOW',
     UNFOLLOW: 'UNFOLLOW',
@@ -59,5 +61,14 @@ export const setCurrentPage = (page) => ({type: ATTR.SET_CURRENT_PAGE, page})
 export const setTotalUsersCount = count => ({type: ATTR.SET_TOTAL_USER_COUNT, count})
 export const toggleIsFetching = isFetching => ({type: ATTR.TOGGLE_IS_FETCHING, isFetching})
 export const toggleFollowingProgress = (isFetching, userId) => ({type: ATTR.TOGGLE_IS_FOLLOWING_PROGRESS, isFetching, userId})
+
+export const getUsersThunkCreator = pagesCount => dispatch => {
+    dispatch(toggleIsFetching(true))
+    usersAPI.getUsers(pagesCount).then((response) => {
+        dispatch(toggleIsFetching(false))
+        dispatch(setUsers(response.items))
+        dispatch(setTotalUsersCount(response.totalUsersCount))
+    })
+}
 
 export default usersReducer
