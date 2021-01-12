@@ -12,8 +12,6 @@ const mapDispatchToProps = dispatch => ({
     updateNewMessageBody: body => dispatch(updateNewMessageBodyCreator(body)),
 })
 
-const DialogsContainer = connect(
-    mapStateToProps, mapDispatchToProps
-)(withAuthRedirect(Dialogs))
+const DialogsContainer = withAuthRedirect(connect(mapStateToProps, mapDispatchToProps)(Dialogs))
 
 export default DialogsContainer;
