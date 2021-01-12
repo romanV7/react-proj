@@ -87,7 +87,7 @@ export const unfollow = userId => dispatch => {
     usersAPI.unfollow(userId)
         .then(response => {
             if (response.data.resultCode === 0) {
-                dispatch(unfollow(u.id))
+                dispatch(unfollowSuccess(u.id))
             }
             dispatch(toggleFollowingProgress(false, userId))
         })
