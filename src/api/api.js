@@ -22,6 +22,9 @@ export const usersAPI = {
     getProfile() {
         return instance.get(baseURL + 'profile/' + userId)
     },
+}
+
+export const authAPI = {
     authMe() {
         return instance.get(baseURL + 'auth/me')
     }
