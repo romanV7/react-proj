@@ -27,6 +27,14 @@ export const usersAPI = {
 export const authAPI = {
     authMe() {
         return instance.get(baseURL + 'auth/me')
+    },
+    login(email, password, rememberMe = false) {
+        return instance.post(babel + 'login', {
+            email, password, rememberMe
+        })
+    },
+    logout() {
+        return instance.delete(babel + 'login')
     }
 }
 
