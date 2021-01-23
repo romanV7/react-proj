@@ -6,12 +6,6 @@ import './index.css';
 import store from './redux/redux-store'
 import {Provider} from 'react-redux'
 
-setInterval(() => {
-    store.dispatch({
-        type: 'FAKE'
-    })
-})
-
 render(
     <React.StrictMode>
         <Provider store={store}>
